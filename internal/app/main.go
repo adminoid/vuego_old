@@ -4,6 +4,6 @@ import (
 	"fmt"
 )
 
-func run(config) {
+func Run(config string) {
 	fmt.Println(config)
 }
