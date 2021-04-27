@@ -1,6 +1,6 @@
 package main
 
-import "vuego/internal/app"
+import app "vuego/internal/app"
 
 const configPath = "configs/main"
 
