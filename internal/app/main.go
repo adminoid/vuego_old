@@ -4,6 +4,6 @@ import (
 	"fmt"
 )
 
-func Run(config string) {
-	fmt.Println(config)
+func Run(config *Config) {
+	fmt.Println(config.DatabaseURL)
 }

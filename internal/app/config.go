@@ -1,12 +1,9 @@
 package app
 
 import (
-	"encoding/json"
-	"fmt"
 	"github.com/joho/godotenv"
+	"github.com/mitchellh/mapstructure"
 	"log"
-	"os"
-	"reflect"
 )
 
 // Config ...
@@ -17,24 +14,14 @@ type Config struct {
 
 // NewConfig ...
 func NewConfig() *Config {
-
 	env := getEnv()
-
-	fmt.Println(reflect.TypeOf(env))
-
-	jsonString, err := json.MarshalIndent(env, "", "  ")
+	config := &Config{}
+	err := mapstructure.Decode(env, &config)
 	if err != nil {
-		fmt.Println("error:", err)
+		log.Fatal(err)
 	}
-
-	fmt.Println(string(jsonString))
-	fmt.Println(env["DATABASE"])
-
-	os.Exit(1)
-
-	return &Config{
-		LogLevel: "debug",
-	}
+	//fmt.Printf("%+v\n", config)
+	return config
 }
 
 func getEnv() map[string]string {
