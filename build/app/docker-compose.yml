@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    logging: &logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "5"
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DbUser:-postgres}
+      POSTGRES_PASSWORD: ${DbPwd:-demopass}
+      PGDATA: ${DbData}
+      POSTGRES_DB: ${DbName:-demodb}
+    ports:
+      - 5432:5432
+    volumes:
+      - ../../migrations:/migrations/
