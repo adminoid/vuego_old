@@ -23,4 +23,5 @@ make migrate-down # unload migrations into docker container
 for environment edit `.env` file
 
 ## Migrations
-created by the following command: `migrate create -ext sql -dir ./migrations -seq init`
+Created by the following command: `migrate create -ext sql -dir ./migrations -seq init`
+If migrations throw error, clean specific table: `TRUNCATE TABLE schema_migrations`

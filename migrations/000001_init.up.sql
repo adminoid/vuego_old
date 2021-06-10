@@ -1,9 +1,12 @@
+BEGIN;
+
 CREATE TABLE users
 (
     id serial not null unique,
     name varchar(255) not null,
     email varchar(255) not null unique,
-    password_hash varchar(255) not null
+    salt varchar(255) not null,
+    digest varchar(255) not null
 );
 
 CREATE TABLE roles
@@ -30,3 +33,5 @@ CREATE TABLE page_types
     name varchar(255) not null,
     page_id int references pages (id) not null
 );
+
+COMMIT;
