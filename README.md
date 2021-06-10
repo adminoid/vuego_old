@@ -25,3 +25,6 @@ for environment edit `.env` file
 ## Migrations
 Created by the following command: `migrate create -ext sql -dir ./migrations -seq init`
 If migrations throw error, clean specific table: `TRUNCATE TABLE schema_migrations`
+
+## Hashing passwords
+Algorithm: <https://github.com/alexedwards/argon2id>
