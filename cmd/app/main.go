@@ -1,11 +1,10 @@
 package main
 
-import "github.com/adminoid/vuego/internal/app"
+import (
+	"github.com/adminoid/vuego/internal/api"
+	"github.com/adminoid/vuego/internal/config"
+)
 
 func main() {
-
-	//app.NewConfig()
-	config := app.NewConfig()
-	app.Run(config)
-
+	api.Run(config.NewConfig())
 }
