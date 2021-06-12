@@ -49,10 +49,10 @@ func (s *APIServer) configureLogger() error {
 }
 
 func (s *APIServer) configureRouter() {
-	s.router.HandleFunc("/hello", s.handleHello())
+	s.router.HandleFunc("/hello", s.HandleHello())
 }
 
-func (s *APIServer) handleHello() http.HandlerFunc {
+func (s *APIServer) HandleHello() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		_, err := io.WriteString(w, "Hello")
 		if err != nil {

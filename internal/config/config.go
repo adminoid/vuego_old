@@ -10,7 +10,7 @@ import (
 type Config struct {
 	LogLevel    string
 	DatabaseURL string
-	BindAddr		string
+	BindAddr	string
 }
 
 // NewConfig ...
