@@ -10,10 +10,11 @@ import (
 type Config struct {
 	LogLevel    string
 	DatabaseURL string
+	BindAddr		string
 }
 
 // NewConfig ...
-func NewConfig() *Config {
+func NewConfig() Config {
 	env := getEnv()
 	config := &Config{}
 	err := mapstructure.Decode(env, &config)
@@ -21,7 +22,7 @@ func NewConfig() *Config {
 		log.Fatal(err)
 	}
 	//fmt.Printf("%+v\n", config)
-	return config
+	return *config
 }
 
 func getEnv() map[string]string {
