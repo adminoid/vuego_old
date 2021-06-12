@@ -4,7 +4,10 @@ import (
 	"github.com/joho/godotenv"
 	"github.com/mitchellh/mapstructure"
 	"log"
+	"os"
 )
+
+var BasePath string = "$GOPATH/src/vuego/.env"
 
 // Config ...
 type Config struct {
@@ -21,13 +24,12 @@ func NewConfig() Config {
 	if err != nil {
 		log.Fatal(err)
 	}
-	//fmt.Printf("%+v\n", config)
 	return *config
 }
 
 func getEnv() map[string]string {
 	var myEnv map[string]string
-	myEnv, err := godotenv.Read()
+	myEnv, err := godotenv.Read(os.ExpandEnv(BasePath))
 	if err != nil {
 		log.Fatal(err)
 	}
