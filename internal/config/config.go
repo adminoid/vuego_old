@@ -11,8 +11,10 @@ var BasePath string = "$GOPATH/src/vuego/.env"
 
 // Config ...
 type Config struct {
+	DbUser string
+	DbPwd string
+	DbName string
 	LogLevel    string
-	DatabaseURL string
 	BindAddr	string
 }
 
