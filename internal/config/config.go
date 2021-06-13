@@ -14,6 +14,7 @@ type Config struct {
 	DbUser string
 	DbPwd string
 	DbName string
+	DbHost string
 	LogLevel    string
 	BindAddr	string
 }

@@ -12,7 +12,9 @@ test:
 
 .PHONY: docker
 docker:
-	cd build/app && docker compose --env-file .../.env up -d postgres
+	cd build/app \
+	&& docker compose down \
+	&& docker compose --env-file .../.env up -d postgres
 
 .PHONY: migrate-up migrate-down
 db := postgres://${DbUser}:${DbPwd}@localhost:5432/${DbName}?sslmode=disable

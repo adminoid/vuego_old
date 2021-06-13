@@ -1,7 +1,6 @@
 package apiserver
 
 import (
-	"fmt"
 	"github.com/adminoid/vuego/internal/app/store"
 	"github.com/adminoid/vuego/internal/config"
 	"github.com/gorilla/mux"
@@ -36,7 +35,10 @@ func (s *APIServer) Start() error {
 	}
 
 	s.configureRouter()
-	s.configureStore()
+	err := s.configureStore()
+	if err != nil {
+		return err
+	}
 
 	s.logger.Info("starting api server")
 
@@ -58,10 +60,13 @@ func (s *APIServer) configureRouter() {
 	s.router.HandleFunc("/hello", s.HandleHello())
 }
 
-func (s *APIServer) configureStore() *store.Store{
+func (s *APIServer) configureStore() error {
 	st := store.New(s.config)
-	fmt.Println(st)
-	return st
+	if err := st.Open(); err != nil {
+		return err
+	}
+	s.store = st
+	return nil
 }
 
 func (s *APIServer) HandleHello() http.HandlerFunc {
