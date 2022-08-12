@@ -1,5 +1,4 @@
 include .env
-export
 
 .DEFAULT_GOAL := build
 .PHONY: build

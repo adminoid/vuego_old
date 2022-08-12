@@ -10,6 +10,7 @@ import (
 type Store struct {
 	DatabaseUrl string
 	db *sql.DB
+	userRepository *UserRepository
 }
 
 func New(config config.Config) *Store {
@@ -45,4 +46,16 @@ func (s *Store) Close() error {
 		return err
 	}
 	return nil
+}
+
+func (s *Store) User() *UserRepository {
+	if s.userRepository != nil {
+		return s.userRepository
+	}
+
+	s.userRepository = &UserRepository{
+		store: s,
+	}
+
+	return s.userRepository
 }

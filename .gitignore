@@ -1,3 +1,4 @@
 /docs/hidden
-.env
 build/app/postgres/data
+.env
+.env.test

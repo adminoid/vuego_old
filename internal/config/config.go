@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-var BasePath string = "$GOPATH/src/vuego/.env"
+var BasePath string = "$GOPATH/src/vuego/"
 
 // Config ...
 type Config struct {
@@ -20,8 +20,8 @@ type Config struct {
 }
 
 // NewConfig ...
-func NewConfig() Config {
-	env := getEnv()
+func NewConfig(envFile string) Config {
+	env := getEnv(envFile)
 	config := &Config{}
 	err := mapstructure.Decode(env, &config)
 	if err != nil {
@@ -30,9 +30,13 @@ func NewConfig() Config {
 	return *config
 }
 
-func getEnv() map[string]string {
+func getEnv(envFile string) map[string]string {
 	var myEnv map[string]string
-	myEnv, err := godotenv.Read(os.ExpandEnv(BasePath))
+	envPath := ".env"
+	if len(envFile) > 0 {
+		envPath = BasePath + envFile
+	}
+	myEnv, err := godotenv.Read(os.ExpandEnv(BasePath + envPath))
 	if err != nil {
 		log.Fatal(err)
 	}
